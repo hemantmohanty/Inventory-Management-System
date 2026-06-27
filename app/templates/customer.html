@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+customer page
+{% endblock %}
+{% block content %}
+<h2 class="heading">Customers</h2>
+
+<a href="{{ url_for('create.add_customer') }}">
+    <button class="form-btn-1">Add Customer</button>
+</a>
+<br>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>State</th>
+        <th>City/Town</th>
+        <th>Phone</th>
+        <th>Email Address</th>
+        <th>Action</th>
+    </tr>
+    {% for cust in customers %}
+    <tr>
+        <td>{{ cust.id }}</td>
+        <td>{{ cust.name }}</td>
+        <td>{{ cust.address }}</td>
+        <td>{{ cust.state }}</td>
+        <td>{{ cust.city }}</td>
+        <td>{{ cust.phone }}</td>
+        <td>{{ cust.email }}</td>
+        <td class="td-btn">
+            <a class="edit" href="{{ url_for('edit.edit_customer', id=cust.id) }}">Edit</a> 
+            <a class="delete" href="{{ url_for('edit.delete_customer', id=cust.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

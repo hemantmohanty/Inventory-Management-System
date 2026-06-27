@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+product page
+{% endblock %}
+
+{% block content %}
+<h2 class="heading">Products</h2>
+
+<a href="{{ url_for('create.add_product') }}">
+    <button class="form-btn-1">Add Product</button>
+</a>
+<br>
+
+<table border="1">
+    <tr>
+        <th>Product Id</th>
+        <th>Name</th>
+        <th>product Group</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+
+    {% for prod in products %}
+    <tr>
+        <td>{{ prod.id }}</td>
+        <td>{{ prod.name }}</td>
+        <td>{{ prod.group }}</td>
+        <td>{{ prod.description }}</td>
+        <td>{{ prod.price }}</td>
+        <td>
+            <a class="edit" href="{{ url_for('edit.edit_product',id=prod.id) }}">Edit</a>
+            <a class="delete" href="{{ url_for('edit.delete_product',id=prod.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="heading">Create Sales Order</h2>
+<div class="form-container">
+    <form method="POST">
+
+        <!-- Customer Select -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Customer</label>
+                <select name="customer_id" required>
+                    {% for c in customers %}
+                    <option value="{{ c.id }}">{{ c.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <!-- Product & Quantity -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Product</label>
+                <select name="product_id" required>
+                    {% for p in products %}
+                    <option value="{{ p.id }}">{{ p.name }} (₹{{ "%.2f"|format(p.price) }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" name="quantity" value="1" min="1" required>
+            </div>
+        </div>
+
+        <!-- Remarks -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Remarks</label>
+                <input type="text" name="remarks">
+                <br><br>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-actions">
+            <button class="form-btn-2" type="submit">Create Order</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

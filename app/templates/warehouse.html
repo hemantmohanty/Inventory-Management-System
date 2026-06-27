@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Werehouse page
+{% endblock %}
+
+{% block content %}
+<h2 class="heading">Warehouse Name</h2>
+
+<a href="{{ url_for('create.add_warehouse') }}">
+    <button class="form-btn-1">Add WarehouseName</button>
+</a>
+<br>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Warehouse-name</th>
+        <th>Action</th>
+    </tr>
+    {% for wareh in warehouses %}
+        <tr>
+            <td>{{ wareh.id }}</td>
+            <td>{{ wareh.name }}</td>
+            <td>
+                <a class="edit" href="{{ url_for('edit.edit_warehouse', id = wareh.id)}}">Edit</a>
+                <a class="delete" href="{{ url_for('edit.delete_warehouse', id = wareh.id)}}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="heading">Edit Customer</h2>
+<div class="form-container">
+    <form method="POST">
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="name">Customer Name:</label>
+                <input id="name" type="text" name="name" value="{{ cust.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input id="address" type="text" name="address" value="{{ cust.address }}" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input id="state" type="text" name="state" value="{{ cust.state }}">
+            </div>
+            <div class="form-group">
+                <label for="city">City/Town:</label>
+                <input id="city" type="text" name="city" value="{{ cust.city }}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input id="phone" type="text" name="phone" value="{{ cust.phone }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input id="email" type="email" name="email" value="{{ cust.email }}">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="form-btn-2" type="submit">Update</button>
+            <a class="cancel-btn" href="{{ url_for('dashboard.customer') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

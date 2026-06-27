@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sales Orders
+{% endblock %}
+
+{% block content %}
+<h2 class="heading">Sales Orders</h2>
+
+<div class="actions">
+    <a href="{{ url_for('create.viws_sales_order') }}">
+        <button class="form-btn-1">+ New Order</button>
+    </a>
+</div>
+
+<ul class="sales-orders-list">
+  {% for order in orders %}
+    <li class="sales-order-item">
+      <div class="order-info">
+          <span><strong>Order #:</strong> {{ order.id }}</span>
+          <span><strong>Customer:</strong> {{ order.customer.name }}</span>
+          <span><strong>Date:</strong> {{ order.date }}</span>
+          <span><strong>Status:</strong> {{ order.status }}</span>
+      </div>
+      <div class="order-actions">
+          <a href="{{ url_for('dashboard.sales_order_detail', order_id=order.id) }}">
+              <button class="form-btn-1 view-btn">View</button>
+          </a>
+          <a href="{{ url_for('edit.delete_sales_order', order_id=order.id) }}" onclick="return confirm('Are you sure?')">
+              <button class="form-btn-1 delete-btn">Delete</button>
+          </a>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

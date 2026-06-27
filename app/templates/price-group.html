@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Price-ground page
+{% endblock %}
+
+{% block content %}
+<h2 class="heading">PriceGroup</h2>
+
+<a href="{{ url_for('create.add_priceGroup') }}">
+    <button class="form-btn-1">Add PriceGroup</button>
+</a>
+<br>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    {% for pg in pricegroups %}
+    <tr>
+        <td>{{ pg.id }}</td>
+        <td>{{ pg.name }}</td>
+        <td>
+            <a class="edit" href="{{ url_for('edit.edit_priceGroup', id=pg.id )}}">Edit</a>
+            <a class="delete" href="{{ url_for('edit.delete_priceGroup', id=pg.id )}}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

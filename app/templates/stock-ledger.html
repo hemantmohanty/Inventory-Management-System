@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Stock Ledger{% endblock %}
+
+{% block content %}
+<h2 class="heading">StockLedge</h2>
+
+<a href="{{ url_for('create.add_stockLedger') }}">
+    <button class="form-btn-1">Add Stockledge</button>
+</a>
+<br>
+
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Warehouse Name</th>
+        <th>Warehouse Location</th>
+        <th>Quantity</th>  
+        <th>Action</th>  
+    </tr>
+    {% for entry in ledgers %}
+    <tr>
+        <td>{{ entry.id }}</td>
+        <td>{{ entry.product.name }}</td>
+        <td>{{ entry.warehouse.name }}</td>
+        <td>{{ entry.warehouse_location.location }}</td>
+        <td>{{ entry.quantity }}</td>
+        <td>
+            <a class="delete" href="{{ url_for('edit.delete_stockLedger' , id = entry.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="4">No ledger entries found</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
